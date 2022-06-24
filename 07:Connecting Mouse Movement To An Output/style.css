@@ -1,0 +1,61 @@
+body {
+  background-color: #558b2f;
+  margin: 0;
+}
+
+.block {
+  background-color: #00838f;
+  width: 100px;
+  height: 100vh;
+}
+
+.block2 {
+  background-color: #00838f;
+  width: 200px;
+  height: 100vh;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.block3 {
+  background-color: #ff8f00;
+  width: 200px;
+  height: 20vh;
+  position: absolute;
+  right: 50%;
+  top: 0;
+}
+
+.eye {
+  background-color: white;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -100px;
+  margin-top: -100px;
+  overflow: hidden;
+}
+
+.pupil {
+  background-color: black;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -25px;
+  margin-top: -25px;
+}
+
+.eye1 {
+  margin-left: -225px;
+}
+
+.eye2 {
+  margin-left: 25px;
+}

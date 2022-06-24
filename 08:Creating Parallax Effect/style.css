@@ -1,0 +1,39 @@
+body {
+  background-color: #b2dfdb;
+  margin: 0;
+}
+
+.block {
+  background-color: #00838f;
+  width: 100px;
+  height: 100vh;
+}
+
+.block2 {
+  background-color: #00838f;
+  width: 200px;
+  height: 100vh;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.block3 {
+  background-color: #ff8f00;
+  width: 200px;
+  height: 20vh;
+  position: absolute;
+  right: 50%;
+  top: 0;
+}
+
+.parallax-item {
+  background-color: black;
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -100px;
+  margin-top: -100px;
+}
