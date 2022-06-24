@@ -60,10 +60,11 @@ var handleMouseMove = function (event) {
     var depth = parseFloat(item.dataset.depth, 10) // parse string into number which is float then be decimal(10)
     var itemOutput = {
       x: output.x.current - output.x.current * depth,
+      y: output.y.current - output.y.current * depth,
     }
     console.log(i, 'depth', depth)
     item.style.transform =
-      'translate(' + itemOutput.x + 'px, ' + output.y.current + 'px)'
+      'translate(' + itemOutput.x + 'px, ' + itemOutput.y + 'px)'
   })
 }
 
