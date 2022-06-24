@@ -61,8 +61,10 @@ var handleMouseMove = function (event) {
     var itemOutput = {
       x: output.x.current - output.x.current * depth,
       y: output.y.current - output.y.current * depth,
+      zIndex: 10000 - 10000 * depth,
     }
     console.log(i, 'depth', depth)
+    item.style.zIndex = zIndex
     item.style.transform =
       'translate(' + itemOutput.x + 'px, ' + itemOutput.y + 'px)'
   })
