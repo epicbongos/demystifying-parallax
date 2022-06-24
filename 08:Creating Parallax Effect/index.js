@@ -25,12 +25,12 @@ input.mouseY.range = input.mouseY.end - input.mouseY.start
 var output = {
   x: {
     start: -150,
-    end: 100,
+    end: 150,
     current: 0,
   },
   y: {
-    start: -100,
-    end: 125,
+    start: -150,
+    end: 150,
     current: 0,
   },
 }
@@ -57,10 +57,13 @@ var handleMouseMove = function (event) {
 
   // apply output to html
   itemsArray.forEach(function (item, i) {
-    var depth = item.dataset.depth
+    var depth = parseFloat(item.dataset.depth, 10) // parse string into number which is float then be decimal(10)
+    var itemOutput = {
+      x: output.x.current - output.x.current * depth,
+    }
     console.log(i, 'depth', depth)
     item.style.transform =
-      'translate(' + output.x.current + 'px, ' + output.y.current + 'px)'
+      'translate(' + itemOutput.x + 'px, ' + output.y.current + 'px)'
   })
 }
 
