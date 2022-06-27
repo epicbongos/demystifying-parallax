@@ -41,6 +41,11 @@ var output = {
 output.x.range = output.x.end - output.x.start
 output.y.range = output.y.end - output.y.start
 
+var mouse = {
+  x: 0,
+  y: 0,
+}
+
 var updateInputs = function () {
   // mouse x input
   input.mouseX.current = event.clientX
@@ -54,6 +59,8 @@ var updateInputs = function () {
 }
 
 var handleMouseMove = function (event) {
+  mouse.x = event.clientX
+  mouse.y = event.clientY
   updateInputs()
   // output x
   output.x.current = output.x.end - input.mouseX.fraction * output.x.range
