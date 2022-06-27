@@ -40,10 +40,14 @@ var output = {
     start: 1, // 1 = original size
     end: 0.3, // this can be changed to other value
   },
+  blur: {
+    startingDepth: 0.1,
+    range: 40,
+  },
 }
 
 output.scale.range = output.scale.end - output.scale.start
-output.y.range = output.y.end - output.y.start
+output.x.range = output.x.end - output.x.start
 output.y.range = output.y.end - output.y.start
 
 var mouse = {
@@ -78,8 +82,11 @@ var updateEachParallaxItem = function () {
       y: output.y.current - output.y.current * depth,
       zIndex: output.zIndex.range - output.zIndex.range * depth,
       scale: output.scale.start + output.scale.range * depth,
+      blur: (depth - output.blur.startingDepth) * output.blur.range,
     }
     console.log(k, 'depth', depth)
+    item.style.filter = 'blur(' + itemOutput.blur + 'px)' // the item closer to us are not
+    // item.style.filter = 'blur(5px)'
     item.style.zIndex = itemOutput.zIndex
     item.style.transform =
       // scale and translate are both transform property
@@ -101,7 +108,7 @@ var handleMouseMove = function (event) {
   updateEachParallaxItem()
 }
 
-var handleResize = function (event) {
+var handleResize = function () {
   input.mouseX.end = window.innerWidth
   input.mouseX.range = input.mouseX.end - input.mouseX.start
   input.mouseY.end = window.innerHeight
