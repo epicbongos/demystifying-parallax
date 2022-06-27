@@ -33,12 +33,15 @@ var output = {
     end: 150,
     current: 0,
   },
+  zIndex: {
+    range: 10000,
+  },
 }
 
 output.x.range = output.x.end - output.x.start
 output.y.range = output.y.end - output.y.start
 
-var handleMouseMove = function (event) {
+var updateInputs = function () {
   // mouse x input
   input.mouseX.current = event.clientX
   input.mouseX.fraction =
@@ -48,7 +51,10 @@ var handleMouseMove = function (event) {
   input.mouseY.current = event.clientY
   input.mouseY.fraction =
     (input.mouseY.current - input.mouseY.start) / input.mouseY.range
+}
 
+var handleMouseMove = function (event) {
+  updateInputs()
   // output x
   output.x.current = output.x.end - input.mouseX.fraction * output.x.range
 
@@ -61,7 +67,7 @@ var handleMouseMove = function (event) {
     var itemOutput = {
       x: output.x.current - output.x.current * depth,
       y: output.y.current - output.y.current * depth,
-      zIndex: 10000 - 10000 * depth,
+      zIndex: output.zIndex.range - output.zIndex.range * depth,
     }
     console.log(i, 'depth', depth)
     item.style.zIndex = itemOutput.zIndex
