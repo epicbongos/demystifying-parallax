@@ -1,11 +1,16 @@
 // html setup
 var itemsHTMLCollection = document.getElementsByClassName('parallax-item')
 var itemsArray = Array.from(itemsHTMLCollection)
-
+var html = document.documentElement
 console.log('itemsArray', itemsArray)
 
 // input Setup
 var input = {
+  scrollY: {
+    start: 0,
+    end: html.scrollHeight - window.innerheight,
+    current: 0,
+  },
   mouseX: {
     start: 0,
     end: window.innerWidth,
@@ -109,8 +114,8 @@ var handleMouseMove = function (event) {
 }
 
 var handleScroll = function () {
-  var scrollAmount = document.documentElement.scrollTop
-  var scrollMax = document.documentElement.scrollHeight
+  var scrollAmount = html.scrollTop
+  var scrollMax = html.scrollHeight - window.innerheight
   console.log('scrollAmount', scrollAmount, 'scrollMax', scrollMax)
 }
 
