@@ -23,6 +23,7 @@ var input = {
   },
 }
 
+// inputs range
 input.scrollY.range = input.mouseY.end - input.mouseY.start
 input.mouseX.range = input.mouseX.end - input.mouseX.start
 input.mouseY.range = input.mouseY.end - input.mouseY.start
@@ -52,6 +53,7 @@ var output = {
   },
 }
 
+// outputs range
 output.scale.range = output.scale.end - output.scale.start
 output.x.range = output.x.end - output.x.start
 output.y.range = output.y.end - output.y.start
@@ -114,19 +116,27 @@ var handleMouseMove = function (event) {
   updateEachParallaxItem()
 }
 
+var handleResize = function () {
+  input.mouseX.end = window.innerWidth
+  input.mouseX.range = input.mouseX.end - input.mouseX.start
+
+  input.mouseY.end = window.innerHeight
+  input.mouseY.range = input.mouseY.end - input.mouseY.start
+
+  input.scrollY.end = html.scrollHeight - window.innerHeight
+  input.scrollY.range = input.mouseY.end - input.mouseY.start
+}
+
 var handleScroll = function () {
-  var scrollAmount = html.scrollTop
+  // scrollAmout /Amt
+  input.scrollY.current = html.scrollTop
+  input.scrollY.fraction =
+    (input.scrollY.current - input.scrollY.start) / input.scrollY.range
+  
   var scrollMax = html.scrollHeight - window.innerheight
   console.log('scrollAmount', scrollAmount, 'scrollMax', scrollMax)
 }
 
-var handleResize = function () {
-  input.mouseX.end = window.innerWidth
-  input.mouseX.range = input.mouseX.end - input.mouseX.start
-  input.mouseY.end = window.innerHeight
-  input.mouseY.range = input.mouseY.end - input.mouseY.start
-}
-
 // window.addEventListener('mousemove', handleMouseMove)
-window.addEventListener('scroll', handleScroll)
+document.addEventListener('scroll', handleScroll)
 window.addEventListener('resize', handleResize)
