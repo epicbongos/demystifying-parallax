@@ -73,6 +73,11 @@ var updateInputs = function () {
   input.mouseY.current = mouse.y
   input.mouseY.fraction =
     (input.mouseY.current - input.mouseY.start) / input.mouseY.range
+
+  //scroll y input
+  input.scrollY.current = html.scrollTop
+  input.scrollY.fraction =
+    (input.scrollY.current - input.scrollY.start) / input.scrollY.range
 }
 
 var updateOutputs = function () {
@@ -128,13 +133,7 @@ var handleResize = function () {
 }
 
 var handleScroll = function () {
-  // scrollAmout /Amt
-  input.scrollY.current = html.scrollTop
-  input.scrollY.fraction =
-    (input.scrollY.current - input.scrollY.start) / input.scrollY.range
-  
-  var scrollMax = html.scrollHeight - window.innerheight
-  console.log('scrollAmount', scrollAmount, 'scrollMax', scrollMax)
+  updateInputs()
 }
 
 // window.addEventListener('mousemove', handleMouseMove)
