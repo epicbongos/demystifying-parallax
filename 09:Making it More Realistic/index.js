@@ -51,8 +51,8 @@ output.x.range = output.x.end - output.x.start
 output.y.range = output.y.end - output.y.start
 
 var mouse = {
-  x: 0,
-  y: 0,
+  x: window.innerWidth * 0.5,
+  y: window.innerHeight * 0.5,
 }
 
 var updateInputs = function () {
