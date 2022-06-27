@@ -48,26 +48,23 @@ var mouse = {
 
 var updateInputs = function () {
   // mouse x input
-  input.mouseX.current = event.clientX
+  input.mouseX.current = mouse.x
   input.mouseX.fraction =
     (input.mouseX.current - input.mouseX.start) / input.mouseX.range
 
   // mouse y input
-  input.mouseY.current = event.clientY
+  input.mouseY.current = mouse.y
   input.mouseY.fraction =
     (input.mouseY.current - input.mouseY.start) / input.mouseY.range
 }
 
-var handleMouseMove = function (event) {
-  mouse.x = event.clientX
-  mouse.y = event.clientY
-  updateInputs()
-  // output x
+var updateOutputs = function () {
+  // output x and y
   output.x.current = output.x.end - input.mouseX.fraction * output.x.range
-
-  // output y
   output.y.current = output.y.end - input.mouseY.fraction * output.y.range
+}
 
+var updateEachParallaxItem = function () {
   // apply output to html
   itemsArray.forEach(function (item, i) {
     var depth = parseFloat(item.dataset.depth, 10) // parse string into number which is float then be decimal(10)
@@ -81,6 +78,14 @@ var handleMouseMove = function (event) {
     item.style.transform =
       'translate(' + itemOutput.x + 'px, ' + itemOutput.y + 'px)'
   })
+}
+
+var handleMouseMove = function (event) {
+  mouse.x = event.clientX
+  mouse.y = event.clientY
+  updateInputs()
+  updateOutputs()
+  updateEachParallaxItem()
 }
 
 var handleResize = function (event) {
