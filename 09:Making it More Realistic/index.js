@@ -36,9 +36,14 @@ var output = {
   zIndex: {
     range: 10000,
   },
+  scale: {
+    start: 1, // 1 = original size
+    end: 0.3, // this can be changed to other value
+  },
 }
 
-output.x.range = output.x.end - output.x.start
+output.scale.range = output.scale.end - output.scale.start
+output.y.range = output.y.end - output.y.start
 output.y.range = output.y.end - output.y.start
 
 var mouse = {
@@ -66,17 +71,25 @@ var updateOutputs = function () {
 
 var updateEachParallaxItem = function () {
   // apply output to html
-  itemsArray.forEach(function (item, i) {
-    var depth = parseFloat(item.dataset.depth, 10) // parse string into number which is float then be decimal(10)
+  itemsArray.forEach(function (item, k) {
+    var depth = parseFloat(item.dataset.depth, 10) // parse strings from itemsArray into number which is float then be decimal(10)
     var itemOutput = {
       x: output.x.current - output.x.current * depth,
       y: output.y.current - output.y.current * depth,
       zIndex: output.zIndex.range - output.zIndex.range * depth,
+      scale: output.scale.start + output.scale.range * depth,
     }
-    console.log(i, 'depth', depth)
+    console.log(k, 'depth', depth)
     item.style.zIndex = itemOutput.zIndex
     item.style.transform =
-      'translate(' + itemOutput.x + 'px, ' + itemOutput.y + 'px)'
+      // scale and translate are both transform property
+      'scale(' +
+      itemOutput.scale +
+      ') translate(' +
+      itemOutput.x +
+      'px, ' +
+      itemOutput.y +
+      'px)'
   })
 }
 
