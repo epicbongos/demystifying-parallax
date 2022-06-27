@@ -23,6 +23,7 @@ var input = {
   },
 }
 
+input.scrollY.range = input.mouseY.end - input.mouseY.start
 input.mouseX.range = input.mouseX.end - input.mouseX.start
 input.mouseY.range = input.mouseY.end - input.mouseY.start
 
