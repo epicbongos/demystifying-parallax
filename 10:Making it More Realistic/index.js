@@ -82,8 +82,9 @@ var updateInputs = function () {
 
 var updateOutputs = function () {
   // output x and y
-  output.x.current = output.x.end - input.mouseX.fraction * output.x.range
-  output.y.current = output.y.end - input.mouseY.fraction * output.y.range
+  // output.x.current = output.x.end - input.mouseX.fraction * output.x.range
+  // output.y.current = output.y.end - input.mouseY.fraction * output.y.range
+  output.y.current = output.y.end - input.scrollY.fraction * output.y.range
 }
 
 var updateEachParallaxItem = function () {
@@ -121,6 +122,12 @@ var handleMouseMove = function (event) {
   updateEachParallaxItem()
 }
 
+var handleScroll = function () {
+  updateInputs()
+  updateOutputs()
+  updateEachParallaxItem()
+}
+
 var handleResize = function () {
   input.mouseX.end = window.innerWidth
   input.mouseX.range = input.mouseX.end - input.mouseX.start
@@ -129,11 +136,7 @@ var handleResize = function () {
   input.mouseY.range = input.mouseY.end - input.mouseY.start
 
   input.scrollY.end = html.scrollHeight - window.innerHeight
-  input.scrollY.range = input.mouseY.end - input.mouseY.start
-}
-
-var handleScroll = function () {
-  updateInputs()
+  input.scrollY.range = input.scrollY.end - input.scrollY.start
 }
 
 // window.addEventListener('mousemove', handleMouseMove)
