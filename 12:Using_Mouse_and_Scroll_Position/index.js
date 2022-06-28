@@ -109,13 +109,10 @@ var updateOutputs = function () {
 var updateEachParallaxItem = function () {
   // apply output to html
   itemsArray.forEach(function (item, k) {
-    var depth = parseFloat(item.dataset.depth, 10) // parse strings from itemsArray into number which is float then be decimal(10)
+    var depth = parseFloat(item.dataset.depth, 10)
     var itemInput = {
       scrollY: {
         start: item.offsetParent.offsetTop,
-        // the use of offset is preferable
-        // offset used to get things to be exactly where you set them originaly
-        // distance between offsetParent and top of the documents + windows.innerHeight
         end: item.offsetParent.offsetTop + window.innerHeight,
       },
     }
@@ -125,7 +122,7 @@ var updateEachParallaxItem = function () {
       itemInput.scrollY.range
 
     var itemOutputYCurrent =
-      output.y.start + itemInput.scrollY.fraction * output.y.range
+      output.scrollY.start + itemInput.scrollY.fraction * output.scrollY.range
 
     var itemOutput = {
       x: output.x.current - output.x.current * depth,
