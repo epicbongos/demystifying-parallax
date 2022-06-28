@@ -95,17 +95,15 @@ var updateInputs = function () {
   input.scrollY.current = html.scrollTop
   input.scrollY.fraction =
     (input.scrollY.current - input.scrollY.start) / input.scrollY.range
-  // console.log("output.y.end", output.y.end);
-  // console.log("output.y.range", output.y.range);
-  // console.log("input.scrollY.fraction", input.scrollY.fraction);
   console.log('scroll', input.scrollY.current)
 }
 
 var updateOutputs = function () {
   // output x and y
-  // output.x.current = output.x.end - input.mouseX.fraction * output.x.range
-  // output.y.current = output.y.end - input.mouseY.fraction * output.y.range
-  output.y.current = output.y.start + input.scrollY.fraction * output.y.range
+  output.x.current = output.x.end - input.mouseX.fraction * output.x.range
+  output.y.current = output.y.end - input.mouseY.fraction * output.y.range
+  output.scrollY.current =
+    output.scrollY.start + input.scrollY.fraction * output.scrollY.range
 }
 
 var updateEachParallaxItem = function () {
