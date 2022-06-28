@@ -2,7 +2,7 @@
 var itemsHTMLCollection = document.getElementsByClassName('parallax-item')
 var itemsArray = Array.from(itemsHTMLCollection)
 var html = document.documentElement
-console.log('itemsArray', itemsArray)
+// console.log("itemsArray", itemsArray);
 
 // input Setup
 var input = {
@@ -36,7 +36,7 @@ var output = {
     current: 0,
   },
   y: {
-    start: -150,
+    start: 0,
     end: 150,
     current: 0,
   },
@@ -78,13 +78,16 @@ var updateInputs = function () {
   input.scrollY.current = html.scrollTop
   input.scrollY.fraction =
     (input.scrollY.current - input.scrollY.start) / input.scrollY.range
+  console.log('output.y.end', output.y.end)
+  console.log('output.y.range', output.y.range)
+  console.log('input.scrollY.fraction', input.scrollY.fraction)
 }
 
 var updateOutputs = function () {
   // output x and y
   // output.x.current = output.x.end - input.mouseX.fraction * output.x.range
   // output.y.current = output.y.end - input.mouseY.fraction * output.y.range
-  output.y.current = output.y.end - input.scrollY.fraction * output.y.range
+  output.y.current = output.y.start + input.scrollY.fraction * output.y.range
 }
 
 var updateEachParallaxItem = function () {
@@ -98,7 +101,7 @@ var updateEachParallaxItem = function () {
       scale: output.scale.start + output.scale.range * depth,
       blur: (depth - output.blur.startingDepth) * output.blur.range,
     }
-    console.log(k, 'depth', depth)
+    // console.log(k, "depth", depth);
     item.style.filter = 'blur(' + itemOutput.blur + 'px)' // the item closer to us are not
     // item.style.filter = 'blur(5px)'
     item.style.zIndex = itemOutput.zIndex
@@ -140,9 +143,9 @@ var handleResize = function () {
 }
 
 // window.addEventListener('mousemove', handleMouseMove)
-// document.addEventListener('scroll', handleScroll)
+document.addEventListener('scroll', handleScroll)
 window.addEventListener('resize', handleResize)
 
-// updateInputs()
-// updateOutputs()
-// updateEachParallaxItem()
+updateInputs()
+updateOutputs()
+updateEachParallaxItem()
