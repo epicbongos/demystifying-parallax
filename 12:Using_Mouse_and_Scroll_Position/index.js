@@ -176,7 +176,7 @@ var handleResize = function () {
   input.scrollY.range = input.scrollY.end - input.scrollY.start
 }
 
-// window.addEventListener('mousemove', handleMouseMove)
+window.addEventListener('mousemove', handleMouseMove)
 document.addEventListener('scroll', handleScroll)
 window.addEventListener('resize', handleResize)
 
