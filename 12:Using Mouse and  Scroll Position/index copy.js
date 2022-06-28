@@ -36,6 +36,11 @@ var output = {
     current: 0,
   },
   y: {
+    start: -150,
+    end: 150,
+    current: 0,
+  },
+  scrollY: {
     start: 0,
     end: 500,
     current: 0,
@@ -57,6 +62,7 @@ var output = {
 output.scale.range = output.scale.end - output.scale.start
 output.x.range = output.x.end - output.x.start
 output.y.range = output.y.end - output.y.start
+output.scrollY.range = output.scrollY.end - output.scrollY.start
 
 var mouse = {
   x: window.innerWidth * 0.5,
@@ -86,9 +92,10 @@ var updateInputs = function () {
 
 var updateOutputs = function () {
   // output x and y
-  // output.x.current = output.x.end - input.mouseX.fraction * output.x.range
-  // output.y.current = output.y.end - input.mouseY.fraction * output.y.range
-  output.y.current = output.y.start + input.scrollY.fraction * output.y.range
+  output.x.current = output.x.end - input.mouseX.fraction * output.x.range
+  output.y.current = output.y.end - input.mouseY.fraction * output.y.range
+  output.scrollY.current =
+    output.scrollY.start + input.scrollY.fraction * output.scrollY.range
 }
 
 var updateEachParallaxItem = function () {
@@ -110,12 +117,13 @@ var updateEachParallaxItem = function () {
       itemInput.scrollY.range
 
     var itemOutputYCurrent =
-      output.y.start + itemInput.scrollY.fraction * output.y.range
+      output.scrollY.start + itemInput.scrollY.fraction * output.scrollY.range
 
     var itemOutput = {
       x: output.x.current - output.x.current * depth,
-      y: itemOutputYCurrent * depth, // deeper <- quicker
-      // y: output.y.current - output.y.current * depth,
+      y:
+        itemOutputYCurrent * depth + // scroll value
+        (output.y.current - output.y.current * depth), // mouse y value
       zIndex: output.zIndex.range - output.zIndex.range * depth,
       scale: output.scale.start + output.scale.range * depth,
       blur: (depth - output.blur.startingDepth) * output.blur.range,
@@ -163,7 +171,7 @@ var handleResize = function () {
   input.scrollY.range = input.scrollY.end - input.scrollY.start
 }
 
-// window.addEventListener('mousemove', handleMouseMove)
+window.addEventListener('mousemove', handleMouseMove)
 document.addEventListener('scroll', handleScroll)
 window.addEventListener('resize', handleResize)
 

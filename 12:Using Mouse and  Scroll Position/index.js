@@ -36,6 +36,11 @@ var output = {
     current: 0,
   },
   y: {
+    start: -150,
+    end: 150,
+    current: 0,
+  },
+  scrollY: {
     start: 0,
     end: 500,
     current: 0,
