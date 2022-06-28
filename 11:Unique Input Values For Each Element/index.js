@@ -104,6 +104,10 @@ var updateEachParallaxItem = function () {
     itemInput.scrollY.fraction =
       (input.scrollY.current - itemInput.scrollY.start) /
       itemInput.scrollY.range
+
+    var itemOutputYCurrent =
+      output.y.start + itemInput.scrollY.fraction * output.y.range
+
     var itemOutput = {
       x: output.x.current - output.x.current * depth,
       y: output.y.current - output.y.current * depth,
