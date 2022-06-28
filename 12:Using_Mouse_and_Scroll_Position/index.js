@@ -45,6 +45,17 @@ var output = {
     end: 500,
     current: 0,
   },
+  //remove up after commit
+  // y: {
+  //   start: -150,
+  //   end: 150,
+  //   current: 0,
+  // },
+  // scrollY: {
+  //   start: 0,
+  //   end: 500,
+  //   current: 0,
+  // },
   zIndex: {
     range: 10000,
   },
@@ -62,7 +73,6 @@ var output = {
 output.scale.range = output.scale.end - output.scale.start
 output.x.range = output.x.end - output.x.start
 output.y.range = output.y.end - output.y.start
-output.scrollY.range = output.scrollY.end - output.scrollY.start
 
 var mouse = {
   x: window.innerWidth * 0.5,
