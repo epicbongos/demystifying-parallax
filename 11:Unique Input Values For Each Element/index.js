@@ -37,7 +37,7 @@ var output = {
   },
   y: {
     start: 0,
-    end: 150,
+    end: 1000,
     current: 0,
   },
   zIndex: {
