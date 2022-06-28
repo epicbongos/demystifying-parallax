@@ -6,6 +6,7 @@ body {
 .parallax-container {
   min-height: 100vh;
   position: relative;
+  overflow: hidden;
 }
 .parallax-container.alt {
   background-color: hsl(300, 30%, 89%);
