@@ -37,7 +37,7 @@ var output = {
   },
   y: {
     start: 0,
-    end: 1000,
+    end: 500,
     current: 0,
   },
   zIndex: {
@@ -110,7 +110,8 @@ var updateEachParallaxItem = function () {
 
     var itemOutput = {
       x: output.x.current - output.x.current * depth,
-      y: output.y.current - output.y.current * depth,
+      y: itemOutputYCurrent * depth, // deeper <- quicker
+      // y: output.y.current - output.y.current * depth,
       zIndex: output.zIndex.range - output.zIndex.range * depth,
       scale: output.scale.start + output.scale.range * depth,
       blur: (depth - output.blur.startingDepth) * output.blur.range,
