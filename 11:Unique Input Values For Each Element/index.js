@@ -97,8 +97,11 @@ var updateEachParallaxItem = function () {
     var depth = parseFloat(item.dataset.depth, 10) // parse strings from itemsArray into number which is float then be decimal(10)
     var itemInput = {
       scrollY: {
-        start: 450,
-        end: 800,
+        start: item.offsetParent.offsetTop,
+        // the use of offset is preferable
+        // offset used to get things to be exactly where you set them originaly
+        // distance between offsetParent and top of the documents + windows.innerHeight
+        end: item.offsetParent.offsetTop + window.innerHeight,
       },
     }
     itemInput.scrollY.range = itemInput.scrollY.end - itemInput.scrollY.start
@@ -118,7 +121,8 @@ var updateEachParallaxItem = function () {
       blur: (depth - output.blur.startingDepth) * output.blur.range,
     }
     // console.log(k, "depth", depth);
-    console.log(k, 'fraction', itemInput.scrollY.fraction)
+    console.log('windowInnerHeight', window.innerHeight)
+    console.log(k, 'itemInput scrollY fraction', itemInput.scrollY.fraction)
     item.style.filter = 'blur(' + itemOutput.blur + 'px)' // the item closer to us are not
     // item.style.filter = 'blur(5px)'
     item.style.zIndex = itemOutput.zIndex
