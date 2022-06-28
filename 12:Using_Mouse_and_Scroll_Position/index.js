@@ -126,8 +126,9 @@ var updateEachParallaxItem = function () {
 
     var itemOutput = {
       x: output.x.current - output.x.current * depth,
-      y: itemOutputYCurrent * depth, // deeper <- quicker
-      // y: output.y.current - output.y.current * depth,
+      y:
+        itemOutputYCurrent * depth + // scroll value
+        (output.y.current - output.y.current * depth), // mouse y value
       zIndex: output.zIndex.range - output.zIndex.range * depth,
       scale: output.scale.start + output.scale.range * depth,
       blur: (depth - output.blur.startingDepth) * output.blur.range,
