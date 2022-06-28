@@ -94,6 +94,13 @@ var updateEachParallaxItem = function () {
   // apply output to html
   itemsArray.forEach(function (item, k) {
     var depth = parseFloat(item.dataset.depth, 10) // parse strings from itemsArray into number which is float then be decimal(10)
+    var itemInput = {
+      scrollY: {
+        start: 0,
+        end: 0,
+      },
+    }
+    itemInput.scrollY.range = itemInput.scrollY.end - itemInput.scrollY.start
     var itemOutput = {
       x: output.x.current - output.x.current * depth,
       y: output.y.current - output.y.current * depth,
