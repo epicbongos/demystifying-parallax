@@ -78,9 +78,10 @@ var updateInputs = function () {
   input.scrollY.current = html.scrollTop
   input.scrollY.fraction =
     (input.scrollY.current - input.scrollY.start) / input.scrollY.range
-  console.log('output.y.end', output.y.end)
-  console.log('output.y.range', output.y.range)
-  console.log('input.scrollY.fraction', input.scrollY.fraction)
+  // console.log("output.y.end", output.y.end);
+  // console.log("output.y.range", output.y.range);
+  // console.log("input.scrollY.fraction", input.scrollY.fraction);
+  console.log('scroll', input.scrollY.current)
 }
 
 var updateOutputs = function () {
@@ -117,6 +118,7 @@ var updateEachParallaxItem = function () {
       blur: (depth - output.blur.startingDepth) * output.blur.range,
     }
     // console.log(k, "depth", depth);
+    console.log(k, 'fraction', itemInput.scrollY.fraction)
     item.style.filter = 'blur(' + itemOutput.blur + 'px)' // the item closer to us are not
     // item.style.filter = 'blur(5px)'
     item.style.zIndex = itemOutput.zIndex
